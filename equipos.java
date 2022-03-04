@@ -23,6 +23,10 @@ public class equipos {
         this.difertenciadegoles = difertenciadegoles;
     }
 
+    equipos(String nombreEquipo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getNombreequipo() {
         return nombreequipo;
     }

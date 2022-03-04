@@ -2,16 +2,16 @@
 package lab7;
 
 import java.io.FileWriter;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 
 /**
  *
  * @author rsk
  */
 public class Menu extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Menu
-     */
+     private adminEquipos admin = new adminEquipos("./listaequipos.txt");
+    
     public Menu() {
         initComponents();
     }
@@ -97,9 +97,14 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearActionPerformed
-       
-        
-        
+       String nombreEquipo=JOptionPane.showInputDialog("Ingrese el nombre del equipo");
+        try {
+            admin.guardar();
+            admin.setequipos(new equipos(nombreEquipo));
+            admin.escritura();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"No se pudo crear el equipo");
+        }
     }//GEN-LAST:event_CrearActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed

@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class adminEquipos {
     private ArrayList<equipos>listaequipos=new ArrayList();
@@ -54,6 +56,25 @@ public class adminEquipos {
         }
         escribir.close();
         buffescri.close();
+    }
+    public void guardar(){
+        Scanner leer =new Scanner (System.in);
+        
+        if (ArchivoDeListaDeEquipos.exists()) {
+            listaequipos=new ArrayList();
+            try {
+                leer=new Scanner(ArchivoDeListaDeEquipos);
+                leer.useDelimiter("/");
+                while (leer.hasNext()) {
+                    listaequipos.add(new equipos(leer.next(),leer.nextInt(),leer.nextInt(),leer.nextInt(),leer.nextInt(),leer.nextInt(),leer.nextInt(),leer.nextInt()));
+                }
+                        
+            } catch (Exception e) {
+                 JOptionPane.showMessageDialog(null, "Ups algo salio mal a la hora de cargar el archivo!");
+            }
+            leer.close();
+            
+        }
         
     }
     
