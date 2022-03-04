@@ -5,10 +5,7 @@ import java.io.FileWriter;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 
-/**
- *
- * @author rsk
- */
+
 public class Menu extends javax.swing.JFrame {
      private adminEquipos admin = new adminEquipos("./listaequipos.txt");
     
@@ -20,23 +17,40 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         CrearEqui = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        nombre = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         crear = new javax.swing.JMenu();
         Crear = new javax.swing.JMenuItem();
         Modificar = new javax.swing.JMenuItem();
         Eliminar = new javax.swing.JMenuItem();
         cargarArchivo = new javax.swing.JMenuItem();
+        Simulacion = new javax.swing.JMenuItem();
+        tabla = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        jLabel1.setText("Ingres el nombre del equipo");
 
         javax.swing.GroupLayout CrearEquiLayout = new javax.swing.GroupLayout(CrearEqui.getContentPane());
         CrearEqui.getContentPane().setLayout(CrearEquiLayout);
         CrearEquiLayout.setHorizontalGroup(
             CrearEquiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGroup(CrearEquiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CrearEquiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         CrearEquiLayout.setVerticalGroup(
             CrearEquiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            .addGroup(CrearEquiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(323, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,6 +88,22 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         crear.add(cargarArchivo);
+
+        Simulacion.setText("Simulacion");
+        Simulacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SimulacionMouseClicked(evt);
+            }
+        });
+        Simulacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SimulacionActionPerformed(evt);
+            }
+        });
+        crear.add(Simulacion);
+
+        tabla.setText("Tabla posiciones");
+        crear.add(tabla);
 
         jMenuBar1.add(crear);
 
@@ -120,12 +150,27 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void cargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarArchivoActionPerformed
-       
-        
-        
+       try{
+           admin = new adminEquipos("./listaequipos.txt");
+           JOptionPane.showMessageDialog(null, "El archivo se cargó con éxito.");
+           crear.setEnabled(true);
+           Modificar.setEnabled(true);
+           Eliminar.setEnabled(true);
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error, no se pudo cargar al archivo!");
+        }  
         
     }//GEN-LAST:event_cargarArchivoActionPerformed
 
+    private void SimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimulacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SimulacionActionPerformed
+
+    private void SimulacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SimulacionMouseClicked
+        
+    }//GEN-LAST:event_SimulacionMouseClicked
+    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -164,9 +209,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JDialog CrearEqui;
     private javax.swing.JMenuItem Eliminar;
     private javax.swing.JMenuItem Modificar;
+    private javax.swing.JMenuItem Simulacion;
     private javax.swing.JMenuItem cargarArchivo;
     private javax.swing.JMenu crear;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JTextField nombre;
+    private javax.swing.JMenuItem tabla;
     // End of variables declaration//GEN-END:variables
 }
